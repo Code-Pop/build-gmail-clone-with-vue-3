@@ -7,11 +7,14 @@ new Server({
   },
   factories: {
     email: Factory.extend({
-      subject(i) {
-        return `Email ${i}`
+      from(){
+        return faker.internet.email()
+      },
+      subject() {
+        return faker.lorem.word()
       },
       body(){
-        return faker.lorem.sentence()
+        return faker.lorem.paragraphs()
       },
       sentDate(){
         return faker.date.recent(20)

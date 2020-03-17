@@ -6,9 +6,11 @@
     <tbody>
       <tr v-for="email in emails" :key="email.id" :class="[email.read ? 'read' : '']">
         <td><input type="checkbox" /></td>
-        <td>{{email.subject}}</td>
-        <td>{{email.body}}</td>
-        <td>{{format(new Date(email.sentDate), 'HH:MM MMM do yyyy')}}</td>
+        <td>{{email.from}}</td>
+        <td>
+          <p><strong>{{email.subject}}</strong> - {{email.body}}</p>
+        </td>
+        <td class="date">{{format(new Date(email.sentDate), 'MMM do yyyy')}}</td>
       </tr>
     </tbody>
   </table>
@@ -31,16 +33,28 @@
 
 <style scoped>
   table {
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
     border-collapse: collapse;
   }
   tr.read {
     background-color: #EEE;
   }
+  tr {
+    height: 40px;
+  }
   td {
     border-bottom: 1px solid black;
     padding: 5px;
     text-align: left;
+  }
+  td p {
+    max-height: 1.2em;
+    overflow-y: hidden;
+    margin: 0;
+  }
+
+  td.date {
+    width: 120px;
   }
 </style>
