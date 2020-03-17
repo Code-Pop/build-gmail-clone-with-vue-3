@@ -15,6 +15,7 @@
     "@vue/cli-plugin-babel": "^4.2.0",
     "@vue/cli-service": "^4.2.0",
     "@vue/compiler-sfc": "^3.0.0-alpha.9",
+    "miragejs": "^0.1.35",
     "vue-cli-plugin-vue-next": "^0.0.4",
     "vue-template-compiler": "^2.6.11"
   }

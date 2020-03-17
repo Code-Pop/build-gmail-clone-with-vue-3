@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <InboxScreen />
+    <suspense>
+      <template #default>
+        <InboxScreen />
+      </template>
+      <template #fallback>
+        Loading...
+      </template>
+    </suspense>
   </div>
 </template>
 
