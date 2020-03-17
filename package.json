@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "date-fns": "^2.11.0",
     "vue": "^3.0.0-alpha.9"
   },
   "devDependencies": {

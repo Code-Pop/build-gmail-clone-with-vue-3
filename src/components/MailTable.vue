@@ -8,13 +8,18 @@
         <td><input type="checkbox" /></td>
         <td>{{email.subject}}</td>
         <td>{{email.body}}</td>
+        <td>{{format(new Date(email.sentDate), 'HH:MM MMM do yyyy')}}</td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
+  import { format } from 'date-fns'
   export default {
+    setup(){
+      return {format}
+    },
     props: {
       emails: {
         type: Array,

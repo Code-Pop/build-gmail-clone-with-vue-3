@@ -12,6 +12,9 @@ new Server({
       },
       body(){
         return faker.lorem.sentence()
+      },
+      sentDate(){
+        return faker.date.recent(20)
       }
     })
   },
@@ -21,6 +24,6 @@ new Server({
   routes() {
     this.namespace = 'api';
 
-    this.get('/emails', {timing: 2000});
+    this.get('/emails');
   }
 })
