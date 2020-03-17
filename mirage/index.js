@@ -1,29 +1,26 @@
-import { Server } from "miragejs"
+import { Server, Model, Factory } from "miragejs"
+import faker from 'faker';
 
 new Server({
+  models: {
+    email: Model
+  },
+  factories: {
+    email: Factory.extend({
+      subject(i) {
+        return `Email ${i}`
+      },
+      body(){
+        return faker.lorem.sentence()
+      }
+    })
+  },
+  seeds(server){
+    server.createList('email', 10);
+  },
   routes() {
     this.namespace = 'api';
 
-    this.get('/emails', async () => {
-      return [{
-        id: 1,
-        subject: 'First Steps',
-        body: 'Learning Vue with Vue 3, cool!',
-        read: false,
-        archived: false,
-      }, {
-        id: 2,
-        subject: 'Vue 3 - pretty cool',
-        body: 'Lots of really good features happening here',
-        read: false,
-        archived: false
-      }, {
-        id: 3,
-        subject: 'Do we have a released date?',
-        body: "I hear Q2 2020.",
-        read: true,
-        archived: false
-      }]
-    }, {timing: 2000})
+    this.get('/emails', {timing: 2000});
   }
 })

@@ -10,7 +10,7 @@
   export default {
     async setup(props, {attrs, slots}){
       let response = await fetch('/api/emails');
-      let emails = await response.json();
+      let {emails} = await response.json();
 
       return {emails}
     },
