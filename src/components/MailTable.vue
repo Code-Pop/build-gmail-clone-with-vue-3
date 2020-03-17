@@ -4,7 +4,7 @@
 
     </thead>
     <tbody>
-      <tr v-for="email in emails" :key="email.id">
+      <tr v-for="email in emails" :key="email.id" :class="[email.read ? 'read' : '']">
         <td><input type="checkbox" /></td>
         <td>{{email.subject}}</td>
         <td>{{email.body}}</td>
@@ -28,8 +28,14 @@
   table {
     max-width: 800px;
     margin: auto;
+    border-collapse: collapse;
+  }
+  tr.read {
+    background-color: #EEE;
   }
   td {
+    border-bottom: 1px solid black;
+    padding: 5px;
     text-align: left;
   }
 </style>
