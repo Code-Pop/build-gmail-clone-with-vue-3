@@ -1,9 +1,5 @@
 <template>
   <table>
-    Number selected: {{selectedEmailIds.size}}
-    <thead>
-
-    </thead>
     <tbody>
       <tr v-for="email in emails" :key="email.id" :class="[email.read ? 'read' : '']">
         <td>
