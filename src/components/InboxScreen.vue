@@ -1,7 +1,7 @@
 <template>
   <h1>VMail Inbox</h1>
-
-  Number selected: {{selectedEmailIds.size}}
+  
+  <p>Number selected: {{emailSelection.ids.size}}</p>
 
   <MailTable :emails="emails" />
 </template>
@@ -15,9 +15,9 @@
       let response = await fetch('/api/emails');
       let {emails} = await response.json();
 
-      let {selectedEmailIds} = useEmailSelection();
+      let {emailSelection} = useEmailSelection();
 
-      return {emails, selectedEmailIds}
+      return {emails, emailSelection}
     },
     components: {
       MailTable

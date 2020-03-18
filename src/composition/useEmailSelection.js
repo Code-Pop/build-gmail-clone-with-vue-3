@@ -1,19 +1,21 @@
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
+let ids = new Set(['1', '5']);
 export const useEmailSelection = function(){
-  let selectedEmailIds = ref(new Set(['1', '5']))
 
-  let toggleEmailSelection = (id) => {
-    if(selectedEmailIds.value.has(id)) {
-      selectedEmailIds.value.delete(id)
-    } else {
-      selectedEmailIds.value.add(id);
+  let emailSelection = reactive({
+    ids: ids,
+    toggle: function(id) {
+      if(this.ids.has(id)) {
+        this.ids.delete(id)
+      } else {
+        this.ids.add(id);
+      }
     }
-  }
+  })
 
   return {
-    selectedEmailIds,
-    toggleEmailSelection
+    emailSelection,
   }
 }
 
