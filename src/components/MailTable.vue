@@ -18,11 +18,13 @@
         <td class="date">{{format(new Date(email.sentDate), 'MMM do yyyy')}}</td>
       </tr>
     </tbody>
-  </table>
 
-  <ModalView :isOpened="!!openedEmail" :closeModal="() => {openedEmail = null;}">
-    <MailView :email="openedEmail" />
-  </ModalView>
+    <portal target="#modal-portal">
+      <ModalView :isOpened="!!openedEmail" :closeModal="() => {openedEmail = null;}">
+        <MailView :email="openedEmail" />
+      </ModalView>
+    </portal>
+  </table>
 </template>
 
 <script>
