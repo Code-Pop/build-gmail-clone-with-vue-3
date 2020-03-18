@@ -1,9 +1,9 @@
 <template>
-  <h1>VMail Inbox</h1>
+  <h1>VMail Archives</h1>
   
-  <BulkActionBar :emails="inboxEmails" />
+  <BulkActionBar :emails="archivedEmails" />
 
-  <MailTable :emails="inboxEmails" />
+  <MailTable :emails="archivedEmails" />
 </template>
 
 <script>
@@ -18,11 +18,11 @@
       let {emails} = await response.json();
 
       emails = ref(emails);
-      let inboxEmails = computed(() => {
-        return emails.value.filter(e => !e.archived)
+      let archivedEmails = computed(() => {
+        return emails.value.filter(e => e.archived)
       })
 
-      return {inboxEmails}
+      return {archivedEmails}
     },
     components: {
       MailTable,
