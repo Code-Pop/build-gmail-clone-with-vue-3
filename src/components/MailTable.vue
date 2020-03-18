@@ -1,7 +1,11 @@
 <template>
   <table>
     <tbody>
-      <tr v-for="email in emails" :key="email.id" :class="[email.read ? 'read' : '']">
+      <tr v-for="email in emails" 
+          :key="email.id"
+          :class="[email.read ? 'read' : '']"
+          @click="openedEmail = email"
+          class="clickable">
         <td>
           <input type="checkbox" 
                   :checked="emailSelection.emails.has(email)"
@@ -15,22 +19,31 @@
       </tr>
     </tbody>
   </table>
+
+  <MailViewModal :email="openedEmail" />
 </template>
 
 <script>
   import { format } from 'date-fns'
   import useEmailSelection from '../composition/useEmailSelection';
+  import MailViewModal from '@/components/MailViewModal.vue';
+  import { ref } from 'vue';
 
   export default {
-    setup(){
+    setup({emails}){
       let {emailSelection} = useEmailSelection();
-      return {format, emailSelection,}
+      let openedEmail = ref();
+
+      return {format, emailSelection, openedEmail}
     },
     props: {
       emails: {
         type: Array,
         default: []
       }
+    },
+    components: {
+      MailViewModal
     }
   }
 </script>
@@ -60,5 +73,9 @@
 
   td.date {
     width: 120px;
+  }
+
+  .clickable {
+    cursor: pointer;
   }
 </style>
