@@ -1,13 +1,11 @@
 <template>
-  <p>Number selected: {{emailSelection.ids.size}}</p>
-
   <table>
     <tbody>
       <tr v-for="email in emails" :key="email.id" :class="[email.read ? 'read' : '']">
         <td>
           <input type="checkbox" 
-                  :checked="emailSelection.ids.has(email.id)"
-                  @click="emailSelection.toggle(email.id)" />
+                  :checked="emailSelection.ids.has(email)"
+                  @click="emailSelection.toggle(email)" />
         </td>
         <td>{{email.from}}</td>
         <td>

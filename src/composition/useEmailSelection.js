@@ -1,6 +1,6 @@
 import { ref, reactive } from 'vue';
 
-let ids = new Set(['1', '5']);
+let ids = new Set();
 export const useEmailSelection = function(){
 
   let emailSelection = reactive({
