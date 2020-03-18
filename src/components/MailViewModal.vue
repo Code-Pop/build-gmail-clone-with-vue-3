@@ -1,6 +1,6 @@
 <template>
   <div class="modal" v-if="email">
-    <div class="overlay"></div>
+    <div class="overlay" @click="closeModal()"></div>
     <div class="modal-card">
       From: {{email.from}}<br>
       Subject: <strong>{{email.subject}}</strong>
@@ -15,9 +15,9 @@
       email: {
         type: Object
       },
-      isOpened: {
-        type: Boolean,
-        default: true
+      closeModal: {
+        type: Function,
+        required: true
       }
     }
   }

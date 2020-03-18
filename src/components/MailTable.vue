@@ -4,7 +4,7 @@
       <tr v-for="email in emails" 
           :key="email.id"
           :class="[email.read ? 'read' : '']"
-          @click="openedEmail = email"
+          @click="openEmail(email)"
           class="clickable">
         <td>
           <input type="checkbox" 
@@ -20,7 +20,7 @@
     </tbody>
   </table>
 
-  <MailViewModal :email="openedEmail" />
+  <MailViewModal :email="openedEmail" :closeModal="() => {openedEmail = null;}"/>
 </template>
 
 <script>
@@ -34,7 +34,12 @@
       let {emailSelection} = useEmailSelection();
       let openedEmail = ref();
 
-      return {format, emailSelection, openedEmail}
+      let openEmail = function(email) {
+        openedEmail.value = email;
+        openedEmail.value.read = true;
+      }
+
+      return {format, emailSelection, openedEmail, openEmail}
     },
     props: {
       emails: {
