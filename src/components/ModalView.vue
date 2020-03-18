@@ -9,6 +9,21 @@
 
 <script>
   export default {
+    mounted: function () {
+      window.addEventListener('keydown', this.onkey)
+    },
+    beforeUnmount: function () {
+      window.removeEventListener('keydown', this.onkey)
+    },
+    methods: {
+      onkey(event){
+        if(!this.isOpened) { return null }
+
+        if(event.key == 'Escape') {
+          this.closeModal()
+        }
+      }
+    },
     props: {
       isOpened: {
         type: Boolean,
