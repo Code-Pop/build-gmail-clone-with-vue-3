@@ -1,7 +1,9 @@
 <template>
   <h1>VMail Inbox</h1>
   
-  <p>Number selected: {{emailSelection.ids.size}}</p>
+  <p>Number selected: {{emailSelection.emails.size}}</p>
+  <button @click="emailSelection.markRead()">Mark Selected Read</button>
+  <button @click="emailSelection.markUnread()">Mark Selected Unread</button>
 
   <MailTable :emails="emails" />
 </template>

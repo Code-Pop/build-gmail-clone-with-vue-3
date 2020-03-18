@@ -4,7 +4,7 @@
       <tr v-for="email in emails" :key="email.id" :class="[email.read ? 'read' : '']">
         <td>
           <input type="checkbox" 
-                  :checked="emailSelection.ids.has(email)"
+                  :checked="emailSelection.emails.has(email)"
                   @click="emailSelection.toggle(email)" />
         </td>
         <td>{{email.from}}</td>
