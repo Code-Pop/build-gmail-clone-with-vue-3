@@ -1,28 +1,25 @@
 <template>
   <h1>VMail Inbox</h1>
   
-  <p>Number selected: {{emailSelection.emails.size}}</p>
-  <button @click="emailSelection.markRead()">Mark Selected Read</button>
-  <button @click="emailSelection.markUnread()">Mark Selected Unread</button>
+  <BulkActionBar />
 
   <MailTable :emails="emails" />
 </template>
 
 <script>
   import MailTable from '@/components/MailTable.vue';
-  import useEmailSelection from '../composition/useEmailSelection';
+  import BulkActionBar from '@/components/BulkActionBar.vue';
 
   export default {
     async setup(props, {attrs, slots}){
       let response = await fetch('/api/emails');
       let {emails} = await response.json();
 
-      let {emailSelection} = useEmailSelection();
-
-      return {emails, emailSelection}
+      return {emails}
     },
     components: {
-      MailTable
+      MailTable,
+      BulkActionBar
     }
   }
 </script>
