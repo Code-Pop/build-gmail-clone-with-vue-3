@@ -23,17 +23,11 @@
 
 <script>
   import { format } from 'date-fns'
-  import { ref } from 'vue';
+  import useEmailSelection from '../composition/useEmailSelection';
+
   export default {
     setup(){
-      let selectedEmailIds = ref(new Set(['1', '5']))
-      let toggleEmailSelection = (id) => {
-        if(selectedEmailIds.value.has(id)) {
-          selectedEmailIds.value.delete(id)
-        } else {
-          selectedEmailIds.value.add(id);
-        }
-      }
+      let {selectedEmailIds, toggleEmailSelection} = useEmailSelection();
       return {format, selectedEmailIds, toggleEmailSelection}
     },
     props: {
