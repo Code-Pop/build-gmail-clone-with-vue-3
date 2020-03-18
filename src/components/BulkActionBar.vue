@@ -26,7 +26,7 @@
         return emailSelection.emails.size;
       }) 
       let allAreSelected = computed(() => {
-        return emails.length == numberSelected;
+        return emails.length == numberSelected.value;
       })
       
       let bulkSelect = function(){
