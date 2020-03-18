@@ -21,6 +21,9 @@ new Server({
       },
       sentDate(){
         return faker.date.recent(20)
+      },
+      archived(i){
+        return i % 2 == 0;
       }
     })
   },

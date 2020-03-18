@@ -9,6 +9,9 @@
     <button @click="emailSelection.markUnread()" :disabled="Array.from(emailSelection.emails).every(e => !e.read)">
       Mark Unread
     </button>
+    <button @click="emailSelection.archive()" :disabled="numberSelected == 0">
+      Archive
+    </button>
   </div>
 </template>
 

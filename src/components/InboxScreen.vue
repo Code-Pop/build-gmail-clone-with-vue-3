@@ -3,7 +3,7 @@
   
   <BulkActionBar :emails="emails" />
 
-  <MailTable :emails="emails" />
+  <MailTable :emails="emails.filter(e => !e.archived)" />
 </template>
 
 <script>
