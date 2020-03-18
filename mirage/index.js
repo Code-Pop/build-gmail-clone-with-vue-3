@@ -7,6 +7,9 @@ new Server({
   },
   factories: {
     email: Factory.extend({
+      id(i) {
+        return i;
+      },
       from(){
         return faker.internet.email()
       },

@@ -1,11 +1,14 @@
 <template>
   <table>
+    Number selected: {{selectedEmailIds.size}}
     <thead>
 
     </thead>
     <tbody>
       <tr v-for="email in emails" :key="email.id" :class="[email.read ? 'read' : '']">
-        <td><input type="checkbox" /></td>
+        <td><input type="checkbox" 
+                   :checked="selectedEmailIds.has(email.id)"
+                   @click="addToSelectedEmails(email.id)" /></td>
         <td>{{email.from}}</td>
         <td>
           <p><strong>{{email.subject}}</strong> - {{email.body}}</p>
@@ -18,9 +21,18 @@
 
 <script>
   import { format } from 'date-fns'
+  import { ref } from 'vue';
   export default {
     setup(){
-      return {format}
+      let selectedEmailIds = ref(new Set(['1', '5']))
+      let addToSelectedEmails = (id) => {
+        if(selectedEmailIds.value.has(id)) {
+          selectedEmailIds.value.delete(id)
+        } else {
+          selectedEmailIds.value.add(id);
+        }
+      }
+      return {format, selectedEmailIds, addToSelectedEmails}
     },
     props: {
       emails: {
