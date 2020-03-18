@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <button @click="screenName = 'ArchivedScreen'" 
-            :disabled="screenName == 'ArchivedScreen'">
+    <button @click="screenName = 'MailScreenArchived'" 
+            :disabled="screenName == 'MailScreenArchived'">
       Archived View
     </button>
-    <button @click="screenName = 'InboxScreen'"
-            :disabled="screenName == 'InboxScreen'">
+    <button @click="screenName = 'MailScreenInbox'"
+            :disabled="screenName == 'MailScreenInbox'">
       Inbox View
     </button>
 
     <suspense>
       <template #default>
-        <component :is="screenName" />
+        <MailScreen :screenName="screenName" />
       </template>
       <template #fallback>
         <p>Loading...</p>
@@ -21,17 +21,15 @@
 </template>
 
 <script>
-import InboxScreen from './components/InboxScreen.vue';
-import ArchivedScreen from '@/components/ArchivedScreen.vue';
+import MailScreen from '@/components/MailScreen.vue';
 
 export default {
   name: 'App',
   components: {
-    InboxScreen,
-    ArchivedScreen
+    MailScreen
   },
-  setup(){
-    let screenName = 'InboxScreen';
+  setup(){  
+    let screenName = 'MailScreenInbox';
     return {screenName}
   }
 };

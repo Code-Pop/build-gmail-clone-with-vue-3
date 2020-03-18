@@ -10,16 +10,12 @@
   import MailTable from '@/components/MailTable.vue';
   import BulkActionBar from '@/components/BulkActionBar.vue';
 
-  import { computed, ref } from 'vue';
+  import { computed } from 'vue';
 
   export default {
-    async setup(){
-      let response = await fetch('/api/emails');
-      let {emails} = await response.json();
-
-      emails = ref(emails);
+    async setup({emails}){
       let archivedEmails = computed(() => {
-        return emails.value.filter(e => e.archived)
+        return emails.filter(e => e.archived)
       })
 
       return {archivedEmails}
