@@ -1,7 +1,7 @@
 <template>
   <h1>VMail Inbox</h1>
   
-  <BulkActionBar />
+  <BulkActionBar :emails="emails" />
 
   <MailTable :emails="emails" />
 </template>
