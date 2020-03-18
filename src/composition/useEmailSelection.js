@@ -28,6 +28,7 @@ export const useEmailSelection = function(){
     markRead(){ this.forSelected(e => e.read = true )},
     markUnread(){ this.forSelected(e => e.read = false )},
     archive(){ this.forSelected(e => e.archived = true); this.clear();},
+    moveToInbox(){ this.forSelected(e => e.archived = false); this.clear();}
   })
 
   return {

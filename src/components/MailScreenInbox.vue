@@ -1,7 +1,7 @@
 <template>
   <h1>VMail Inbox</h1>
   
-  <BulkActionBar :emails="inboxEmails" />
+  <BulkActionBar :emails="inboxEmails" :actions="['markRead', 'markUnread', 'archive']" />
 
   <MailTable :emails="inboxEmails" />
 </template>

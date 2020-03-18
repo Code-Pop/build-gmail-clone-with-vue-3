@@ -3,14 +3,25 @@
     <span v-if="!allAreSelected && numberSelected > 0">-</span> <!-- later on this minus sign will be in the checkbox, as it is in gmail -->
     <input type="checkbox" :checked="allAreSelected" @click="bulkSelect">
     
-    <button @click="emailSelection.markRead()" :disabled="Array.from(emailSelection.emails).every(e => e.read)">
+    <button @click="emailSelection.markRead()"
+            :disabled="Array.from(emailSelection.emails).every(e => e.read)"
+            v-if="actions.includes('markRead')">
       Mark Read
     </button>
-    <button @click="emailSelection.markUnread()" :disabled="Array.from(emailSelection.emails).every(e => !e.read)">
+    <button @click="emailSelection.markUnread()" 
+            :disabled="Array.from(emailSelection.emails).every(e => !e.read)"
+            v-if="actions.includes('markUnread')">
       Mark Unread
     </button>
-    <button @click="emailSelection.archive()" :disabled="numberSelected == 0">
+    <button @click="emailSelection.archive()" 
+            :disabled="numberSelected == 0"
+            v-if="actions.includes('archive')">
       Archive
+    </button>
+    <button @click="emailSelection.moveToInbox()"
+            :disabled="numberSelected == 0"
+            v-if="actions.includes('moveToInbox')">
+      Move to Inbox
     </button>
   </div>
 </template>
@@ -42,6 +53,10 @@
       emails: {
         type: Array,
         default: []
+      },
+      actions: {
+        type: Array,
+        default: ['markRead', 'markUnread']
       }
     }
   }
