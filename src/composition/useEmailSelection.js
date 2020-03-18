@@ -12,16 +12,13 @@ export const useEmailSelection = function(){
         this.emails.add(id);
       }
     },
-    markRead(){
+    forSelected(fn){
       this.emails.forEach(email => {
-        email.read = true
+        fn(email)
       })
     },
-    markUnread(){
-      this.emails.forEach(email => {
-        email.read = false
-      })
-    }
+    markRead(){ this.forSelected(e => e.read = true )},
+    markUnread(){ this.forSelected(e => e.read = false )},
   })
 
   return {
