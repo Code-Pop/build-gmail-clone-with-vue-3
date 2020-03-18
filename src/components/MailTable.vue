@@ -20,13 +20,16 @@
     </tbody>
   </table>
 
-  <MailViewModal :email="openedEmail" :closeModal="() => {openedEmail = null;}"/>
+  <ModalView :isOpened="!!openedEmail" :closeModal="() => {openedEmail = null;}">
+    <MailView :email="openedEmail" />
+  </ModalView>
 </template>
 
 <script>
   import { format } from 'date-fns'
   import useEmailSelection from '../composition/useEmailSelection';
-  import MailViewModal from '@/components/MailViewModal.vue';
+  import MailView from '@/components/MailView.vue';
+  import ModalView from '@/components/ModalView.vue';
   import { ref } from 'vue';
 
   export default {
@@ -48,7 +51,8 @@
       }
     },
     components: {
-      MailViewModal
+      MailView,
+      ModalView
     }
   }
 </script>

@@ -1,10 +1,8 @@
 <template>
-  <div class="modal" v-if="email">
+  <div class="modal" v-if="isOpened">
     <div class="overlay" @click="closeModal()"></div>
     <div class="modal-card">
-      From: {{email.from}}<br>
-      Subject: <strong>{{email.subject}}</strong>
-      <p>{{email.body}}</p>
+      <slot :closeModal="closeModal" />
     </div>
   </div>
 </template>
@@ -12,8 +10,9 @@
 <script>
   export default {
     props: {
-      email: {
-        type: Object
+      isOpened: {
+        type: Boolean,
+        required: true
       },
       closeModal: {
         type: Function,
