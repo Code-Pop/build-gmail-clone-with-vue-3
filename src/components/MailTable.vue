@@ -6,9 +6,11 @@
     </thead>
     <tbody>
       <tr v-for="email in emails" :key="email.id" :class="[email.read ? 'read' : '']">
-        <td><input type="checkbox" 
-                   :checked="selectedEmailIds.has(email.id)"
-                   @click="addToSelectedEmails(email.id)" /></td>
+        <td>
+          <input type="checkbox" 
+                  :checked="selectedEmailIds.has(email.id)"
+                  @click="toggleEmailSelection(email.id)" />
+        </td>
         <td>{{email.from}}</td>
         <td>
           <p><strong>{{email.subject}}</strong> - {{email.body}}</p>
@@ -25,14 +27,14 @@
   export default {
     setup(){
       let selectedEmailIds = ref(new Set(['1', '5']))
-      let addToSelectedEmails = (id) => {
+      let toggleEmailSelection = (id) => {
         if(selectedEmailIds.value.has(id)) {
           selectedEmailIds.value.delete(id)
         } else {
           selectedEmailIds.value.add(id);
         }
       }
-      return {format, selectedEmailIds, addToSelectedEmails}
+      return {format, selectedEmailIds, toggleEmailSelection}
     },
     props: {
       emails: {
