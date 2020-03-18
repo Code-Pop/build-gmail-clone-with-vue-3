@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <button @click="selectScreen('MailScreenArchived')" 
-            :disabled="screenName == 'MailScreenArchived'">
-      Archived View
-    </button>
     <button @click="selectScreen('MailScreenInbox');"
             :disabled="screenName == 'MailScreenInbox'">
       Inbox View
+    </button>
+    <button @click="selectScreen('MailScreenArchived')" 
+            :disabled="screenName == 'MailScreenArchived'">
+      Archived View
     </button>
 
     <suspense>
