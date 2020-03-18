@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <button @click="screenName = 'MailScreenArchived'" 
+    <button @click="selectScreen('MailScreenArchived')" 
             :disabled="screenName == 'MailScreenArchived'">
       Archived View
     </button>
-    <button @click="screenName = 'MailScreenInbox'"
+    <button @click="selectScreen('MailScreenInbox');"
             :disabled="screenName == 'MailScreenInbox'">
       Inbox View
     </button>
@@ -22,6 +22,8 @@
 
 <script>
 import MailScreen from '@/components/MailScreen.vue';
+import useEmailSelection from './composition/useEmailSelection';
+import { ref } from 'vue'
 
 export default {
   name: 'App',
@@ -29,8 +31,13 @@ export default {
     MailScreen
   },
   setup(){  
-    let screenName = 'MailScreenInbox';
-    return {screenName}
+    let screenName = ref('MailScreenInbox');
+    let {emailSelection} = useEmailSelection();
+    let selectScreen = function(newScreen){
+      screenName.value = newScreen;
+      emailSelection.clear();
+    }
+    return {screenName, selectScreen}
   }
 };
 </script>
