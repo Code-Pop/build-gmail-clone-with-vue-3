@@ -1,6 +1,6 @@
 <template>
   <div>
-    <component :is="screenName" :emails="emails" />
+    <component :is="screenName" :emails="emails.sort((e1, e2) => e1.sentAt < e2.sentAt ? 1 : -1)" />
   </div>
 </template>
 
