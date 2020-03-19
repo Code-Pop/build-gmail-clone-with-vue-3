@@ -41,13 +41,17 @@
 
       let openEmail = function(email) {
         openedEmail.value = email;
+
         if(email) {
           openedEmail.value.read = true;
         }
       }
 
-      let changeEmail = function({amount}){
+      let changeEmail = function({amount, archive}){
         let index = emails.findIndex(e => e == openedEmail.value);
+
+        if(archive) { emails[index].archived = true }
+
         openEmail(emails[index + amount])
       }
 

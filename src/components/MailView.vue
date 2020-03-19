@@ -14,7 +14,9 @@
     setup({email}, {emit}) {
       useKeydown([
         {key: 'k', fn: () => emit('changeEmail', {amount: -1})}, 
-        {key: 'j', fn: () => emit('changeEmail', {amount: 1})}
+        {key: 'j', fn: () => emit('changeEmail', {amount: 1})},
+        {key: '[', fn: () => emit('changeEmail', {amount: -1, archive: true})},
+        {key: ']', fn: () => emit('changeEmail', {amount: 1, archive: true})},
       ])
 
       let emailMarkdown = marked(email.body);
