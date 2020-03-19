@@ -21,7 +21,7 @@
 
     <portal target="#modal-portal">
       <ModalView v-if="!!openedEmail" :closeModal="() => {openedEmail = null;}">
-        <MailView :email="openedEmail" />
+        <MailView :email="openedEmail" @changeEmail="changeEmail" />
       </ModalView>
     </portal>
   </table>
@@ -41,10 +41,17 @@
 
       let openEmail = function(email) {
         openedEmail.value = email;
-        openedEmail.value.read = true;
+        if(email) {
+          openedEmail.value.read = true;
+        }
       }
 
-      return {format, emailSelection, openedEmail, openEmail}
+      let changeEmail = function({amount}){
+        let index = emails.findIndex(e => e == openedEmail.value);
+        openEmail(emails[index + amount])
+      }
+
+      return {format, emailSelection, openedEmail, openEmail, changeEmail}
     },
     props: {
       emails: {

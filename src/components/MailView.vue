@@ -8,8 +8,15 @@
 
 <script>
   import marked from 'marked';
+  import { useKeydown } from '../composition/useKeydown';
+
   export default {
-    setup({email}) {
+    setup({email}, {emit}) {
+      useKeydown([
+        {key: 'k', fn: () => emit('changeEmail', {amount: -1})}, 
+        {key: 'j', fn: () => emit('changeEmail', {amount: 1})}
+      ])
+
       let emailMarkdown = marked(email.body);
       return {
         emailMarkdown
