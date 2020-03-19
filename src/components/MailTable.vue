@@ -15,7 +15,7 @@
         <td>
           <p><strong>{{email.subject}}</strong> - {{email.body}}</p>
         </td>
-        <td class="date">{{format(new Date(email.sentDate), 'MMM do yyyy')}}</td>
+        <td class="date">{{format(new Date(email.sentAt), 'MMM do yyyy')}}</td>
       </tr>
     </tbody>
 

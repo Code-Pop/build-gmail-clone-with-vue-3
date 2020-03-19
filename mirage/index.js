@@ -19,7 +19,7 @@ new Server({
       body(){
         return faker.lorem.paragraphs()
       },
-      sentDate(){
+      sentAt(){
         return faker.date.recent(20)
       },
       archived(i){
