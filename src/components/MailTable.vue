@@ -47,15 +47,16 @@
         }
       }
 
-      let changeEmail = function({amount, archive}){
-        let index = emails.findIndex(e => e == openedEmail.value);
+      return {format, emailSelection, openedEmail, openEmail}
+    },
+    methods: {
+      changeEmail({amount, archive}) {
+        let index = this.emails.findIndex(e => e == this.openedEmail);
 
-        if(archive) { emails[index].archived = true }
+        if(archive) { this.emails[index].archived = true }
 
-        openEmail(emails[index + amount])
+        this.openEmail(this.emails[index + amount])
       }
-
-      return {format, emailSelection, openedEmail, openEmail, changeEmail}
     },
     props: {
       emails: {
