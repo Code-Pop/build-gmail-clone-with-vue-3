@@ -47,10 +47,10 @@
         }
       }
 
-      function changeEmail(emails, {amount, archive, closeModal}){
+      function changeEmail(emails, {amount, toggleArchive, closeModal}){
         let index = emails.findIndex(e => e == openedEmail.value);
 
-        if(archive) { emails[index].archived = true }
+        if(toggleArchive) { emails[index].archived = !emails[index].archived }
         if(closeModal) { openedEmail.value = null; return null; }
 
         openEmail(emails[index + amount])
