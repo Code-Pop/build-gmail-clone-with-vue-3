@@ -20,7 +20,7 @@
     </tbody>
 
     <portal target="#modal-portal">
-      <ModalView :isOpened="!!openedEmail" :closeModal="() => {openedEmail = null;}">
+      <ModalView v-if="!!openedEmail" :closeModal="() => {openedEmail = null;}">
         <MailView :email="openedEmail" />
       </ModalView>
     </portal>

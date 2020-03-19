@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" v-if="isOpened">
+  <div class="modal">
     <div class="overlay" @click="closeModal()"></div>
     <div class="modal-card">
       <slot :closeModal="closeModal" />
@@ -17,7 +17,6 @@
     },
     methods: {
       onkey(event){
-        if(!this.isOpened) { return null }
 
         if(event.key == 'Escape') {
           this.closeModal()
@@ -25,10 +24,6 @@
       }
     },
     props: {
-      isOpened: {
-        type: Boolean,
-        required: true
-      },
       closeModal: {
         type: Function,
         required: true

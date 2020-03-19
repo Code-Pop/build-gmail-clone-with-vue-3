@@ -1,5 +1,5 @@
 <template>
-  <div class="email">
+  <div class="email" v-if="email">
     <div>From: {{email.from}}</div>
     <div>Subject: <strong>{{email.subject}}</strong></div>
     <div v-html="emailMarkdown" />
