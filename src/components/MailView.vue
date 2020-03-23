@@ -8,7 +8,7 @@
     </div>
 
     <div>From: {{email.from}}</div>
-    <div>Subject: <strong>{{email.subject}}</strong></div>
+    <h2>Subject: <strong>{{email.subject}}</strong></h2>
     <div v-html="emailMarkdown" />
   </div>
 </template>
@@ -54,5 +54,12 @@
 <style scoped>
 .email {
   text-align: left;
+}
+
+button {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 3px;
+  margin: 5px 10px 5px 0px;
 }
 </style>
