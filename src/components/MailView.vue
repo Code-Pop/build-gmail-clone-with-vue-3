@@ -7,8 +7,8 @@
       <button @click="toggleRead(email)">Mark {{email.read ? 'Unread' : 'Read'}}</button>
     </div>
 
-    <div>From: {{email.from}}</div>
-    <h2>Subject: <strong>{{email.subject}}</strong></h2>
+    <h2 class="mb-0">Subject: <strong>{{email.subject}}</strong></h2>
+    <div><em>From {{email.from}} on {{format(new Date(email.sentAt), 'MMM do yyyy')}}</em></div>
     <div v-html="emailMarkdown" />
   </div>
 </template>
@@ -16,6 +16,7 @@
 <script>
   import marked from 'marked';
   import { useKeydown } from '../composition/useKeydown';
+  import { format } from 'date-fns';
 
   export default {
     setup({email}, {emit}) {
@@ -40,7 +41,8 @@
         toggleArchive,
         goNewer,
         goOlder,
-        toggleRead
+        toggleRead,
+        format
       }
     },
     props: {

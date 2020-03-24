@@ -87,6 +87,10 @@ input[type='checkbox']:checked {
   background: #679;
 }
 
+.mb-0 {
+  margin-bottom: 0;
+}
+
 /* Modal */
 
 .modal, .overlay {
