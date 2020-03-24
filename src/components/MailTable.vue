@@ -8,8 +8,8 @@
           class="clickable">
         <td>
           <input type="checkbox" 
-                  :checked="emailSelection.emails.has(email)"
-                  @click="emailSelection.toggle(email)" />
+                 :checked="emailSelection.emails.has(email)"
+                 @click="emailSelection.toggle(email)">
         </td>
         <td>{{email.from}}</td>
         <td>

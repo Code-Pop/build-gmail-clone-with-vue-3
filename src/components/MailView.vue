@@ -55,11 +55,4 @@
 .email {
   text-align: left;
 }
-
-button {
-  font-size: 16px;
-  padding: 8px;
-  border-radius: 3px;
-  margin: 5px 10px 5px 0px;
-}
 </style>

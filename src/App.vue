@@ -53,4 +53,28 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+button {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 3px;
+  margin: 5px 10px 5px 0px;
+}
+
+input[type='checkbox'] {
+  -webkit-appearance:none;
+  cursor: pointer;
+  width:24px;
+  height:24px;
+  background:white;
+  border-radius: 2px;
+  border: 1px solid #555;
+  position: relative;
+  vertical-align: middle;
+  padding: 10px;
+}
+
+input[type='checkbox']:checked {
+  background: #679;
+}
 </style>
