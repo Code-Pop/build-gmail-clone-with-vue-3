@@ -67,19 +67,5 @@
 </script>
 
 <style scoped>
-  .bulk-action-bar {
-    width: 100%;
-    max-width: 1000px;
-    margin: auto;
-    text-align: left;
-  }
 
-  input {
-    margin: 5px;
-  }
-  
-  .checkbox {
-    margin-right: 6px;
-    margin-left: 3px;
-  }
 </style>

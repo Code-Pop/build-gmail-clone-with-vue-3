@@ -1,5 +1,5 @@
 <template>
-  <div class="email" v-if="email">
+  <div class="email-display" v-if="email">
     <div class="toolbar">
       <button @click="toggleArchive">{{email.archived ? 'Move to Inbox' : 'Archive'}}</button>
       <button @click="goNewer">Newer</button>
@@ -52,7 +52,5 @@
 </script>
 
 <style scoped>
-.email {
-  text-align: left;
-}
+
 </style>

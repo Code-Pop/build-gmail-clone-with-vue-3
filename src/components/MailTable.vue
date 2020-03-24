@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="mail-table">
     <tbody>
       <tr v-for="email in emails" 
           :key="email.id"
@@ -70,33 +70,5 @@
 </script>
 
 <style scoped>
-  table {
-    max-width: 1000px;
-    margin: auto;
-    border-collapse: collapse;
-  }
-  tr.read {
-    background-color: #EEE;
-  }
-  tr {
-    height: 40px;
-  }
-  td {
-    border-bottom: 1px solid black;
-    padding: 5px;
-    text-align: left;
-  }
-  td p {
-    max-height: 1.2em;
-    overflow-y: hidden;
-    margin: 0;
-  }
-
-  td.date {
-    width: 120px;
-  }
-
-  .clickable {
-    cursor: pointer;
-  }
+  
 </style>
