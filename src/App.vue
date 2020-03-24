@@ -17,8 +17,6 @@
         <p>Loading...</p>
       </template>
     </suspense>
-
-    <div id="modal-portal"></div>
   </div>
 </template>
 

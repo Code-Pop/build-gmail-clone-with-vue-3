@@ -19,11 +19,9 @@
       </tr>
     </tbody>
 
-    <portal target="#modal-portal">
-      <ModalView v-if="!!openedEmail" :closeModal="() => {openedEmail = null;}">
-        <MailView :email="openedEmail" @changeEmail="(args) => changeEmail(emails, args)" />
-      </ModalView>
-    </portal>
+    <ModalView v-if="!!openedEmail" :closeModal="() => {openedEmail = null;}">
+      <MailView :email="openedEmail" @changeEmail="(args) => changeEmail(emails, args)" />
+    </ModalView>
   </table>
 </template>
 
