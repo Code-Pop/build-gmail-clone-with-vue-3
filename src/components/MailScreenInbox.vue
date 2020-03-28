@@ -10,19 +10,21 @@
   import MailTable from '@/components/MailTable.vue';
   import BulkActionBar from '@/components/BulkActionBar.vue';
 
-  import { computed } from 'vue';
-
   export default {
-    async setup({emails}){
-      let inboxEmails = computed(() => {
-        return emails.filter(e => !e.archived)
-      })
-
-      return {inboxEmails}
-    },
     components: {
       MailTable,
       BulkActionBar
+    },
+    computed: {
+      inboxEmails(){
+        return this.emails.filter(e => !e.archived)
+      }
+    },
+    props: {
+      emails: {
+        type: Object,
+        required: true
+      }
     }
   }
 </script>
