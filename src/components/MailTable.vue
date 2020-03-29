@@ -4,7 +4,7 @@
       <tr v-for="email in emails" 
           :key="email.id"
           :class="[email.read ? 'read' : '']"
-          @click="openEmail(email)"
+          @click="openEmail(email, true)"
           class="clickable">
         <td>
           <input type="checkbox" 
@@ -20,7 +20,9 @@
     </tbody>
 
     <ModalView v-if="!!openedEmail" :closeModal="() => {openedEmail = null;}">
-      <MailView :email="openedEmail" @changeEmail="(args) => changeEmail(emails, args)" />
+      <MailView :email="openedEmail" 
+                @changeEmail="(args) => changeEmail(emails, args)"
+                @openEmail="openEmail" />
     </ModalView>
   </table>
 </template>
@@ -47,13 +49,21 @@
         }
       }
 
-      function changeEmail(emails, {amount, toggleArchive, closeModal}){
+      function changeEmail(emails, {amount, toggleArchive, closeModal, toggleRead}){
         let index = emails.findIndex(e => e == openedEmail.value);
 
         if(toggleArchive) { emails[index].archived = !emails[index].archived }
+        if(toggleRead) { emails[index].read = !emails[index].read }
+
+        if(toggleArchive || toggleRead) {
+          axios.put(`http://localhost:3000/emails/${emails[index].id}`, emails[index])
+        }
+
         if(closeModal) { openedEmail.value = null; return null; }
 
-        openEmail(emails[index + amount])
+        if(amount) {
+          openEmail(emails[index + amount])
+        }
       }
 
       return {format, emailSelection, openedEmail, openEmail, changeEmail}

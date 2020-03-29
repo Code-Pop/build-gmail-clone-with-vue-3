@@ -4,7 +4,7 @@
       <button @click="toggleArchive">{{email.archived ? 'Move to Inbox' : 'Archive'}}</button>
       <button @click="goNewer">Newer</button>
       <button @click="goOlder">Older</button>
-      <button @click="toggleRead(email)">Mark {{email.read ? 'Unread' : 'Read'}}</button>
+      <button @click="toggleRead()">Mark {{email.read ? 'Unread' : 'Read'}}</button>
     </div>
 
     <h2 class="mb-0">Subject: <strong>{{email.subject}}</strong></h2>
@@ -25,7 +25,7 @@
       let goNewerAndArchive = () => emit('changeEmail', {amount: -1, toggleArchive: true})
       let goOlderAndArchive = () => emit('changeEmail', {amount: 1, toggleArchive: true})
       let toggleArchive = () => emit('changeEmail', {toggleArchive: true, closeModal: true})
-      let toggleRead = (email) => { email.read = !email.read }
+      let toggleRead = () => { emit('changeEmail', {toggleRead: true}) }
 
       useKeydown([
         {key: 'k', fn: goNewer}, 

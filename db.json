@@ -25,7 +25,7 @@
       "body": "First of all, lets congratulate Kia King Ishii on joining the Vue.js core team! 🎉 He has been doing an incredible job building vuex-orm and will now focus on working on the next versions of Vuex.\n\nSpeaking of which – Vuex v4.0.0-alpha.1 has just been released! This is the version of Vuex that will work with Vue 3.0 but keep the familiar API you know from the current version.",
       "sentAt": "2020-03-18T18:25:43.511Z",
       "archived": false,
-      "read": false
+      "read": true
     },
     {
       "id": 4,
@@ -33,7 +33,7 @@
       "subject": "'Vue 3 Release Roadmap' + 6 more must-read articles from this week",
       "body": "Newsletter Issue #161",
       "sentAt": "2020-03-24T18:25:43.511Z",
-      "archived": false,
+      "archived": true,
       "read": true
     }
   ]
