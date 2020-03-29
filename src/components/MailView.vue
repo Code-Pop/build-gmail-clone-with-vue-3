@@ -1,9 +1,9 @@
 <template>
   <div class="email-display" v-if="email">
     <div class="toolbar">
-      <button @click="toggleArchive">{{email.archived ? 'Move to Inbox' : 'Archive'}}</button>
-      <button @click="goNewer">Newer</button>
-      <button @click="goOlder">Older</button>
+      <button @click="toggleArchive">{{email.archived ? 'Move to Inbox (e)' : 'Archive (e)'}}</button>
+      <button @click="goNewer">Newer (k)</button>
+      <button @click="goOlder">Older (j)</button>
       <button @click="toggleRead()">Mark {{email.read ? 'Unread' : 'Read'}}</button>
     </div>
 
