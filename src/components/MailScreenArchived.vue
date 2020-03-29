@@ -22,7 +22,7 @@
     },
     props: {
       emails: {
-        type: Object,
+        type: Array,
         required: true
       }
     }
