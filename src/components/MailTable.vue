@@ -21,10 +21,9 @@
 
 <script>
   import { format } from 'date-fns';
-  import axios from 'axios';
 
   export default {
-    setup(){
+    async setup(){
       let emails = [
         {
           "id": 1,
@@ -63,6 +62,8 @@
           "read": false
         }
       ]
+      await new Promise(resolve => setTimeout(resolve, 3000));
+
       return {
         format,
         emails
