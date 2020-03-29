@@ -1,0 +1,13 @@
+{
+  "emails": [
+    {
+      "id": 0,
+      "from": "jeffrey@vuescreencasts.com",
+      "subject": "Vue 3 Is Cool",
+      "body": "So many cool things.\n\nGlad we're getting such a great update.",
+      "sentAt": "2012-04-23T18:25:43.511Z",
+      "archived": false,
+      "read": false
+    }
+  ]
+}

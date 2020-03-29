@@ -11,9 +11,8 @@
 
   export default {
     async setup(){
-      let response = await fetch('/api/emails');
-      let {emails} = await response.json();
-
+      let response = await fetch('http://localhost:3000/emails');
+      let emails = await response.json();
       emails = ref(emails);
 
       return {emails};
