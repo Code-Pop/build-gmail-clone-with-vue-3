@@ -9,7 +9,7 @@
 
     <h2 class="mb-0">Subject: <strong>{{email.subject}}</strong></h2>
     <div><em>From {{email.from}} on {{format(new Date(email.sentAt), 'MMM do yyyy')}}</em></div>
-    <div v-html="emailMarkdown" />
+    <div v-html="marked(email.body)" />
   </div>
 </template>
 
@@ -19,7 +19,7 @@
   import { format } from 'date-fns';
 
   export default {
-    setup({email}, {emit}) {
+    setup({}, {emit}) {
       let goNewer = () => emit('changeEmail', {amount: -1})
       let goOlder = () => emit('changeEmail', {amount: 1})
       let goNewerAndArchive = () => emit('changeEmail', {amount: -1, toggleArchive: true})
@@ -35,14 +35,13 @@
         {key: 'e', fn: toggleArchive}
       ])
 
-      let emailMarkdown = marked(email.body);
       return {
-        emailMarkdown,
         toggleArchive,
         goNewer,
         goOlder,
         toggleRead,
-        format
+        format,
+        marked,
       }
     },
     props: {
