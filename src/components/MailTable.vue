@@ -18,8 +18,8 @@
     </tbody>
   </table>
 
-  <ModalView v-if="openedEmail">
-    <MailView :email="openedEmail" />
+  <ModalView v-if="openedEmail" :closeModal="() => { openedEmail = null; }">
+    <MailView v-if="openedEmail" :email="openedEmail" />
   </ModalView>
 </template>
 

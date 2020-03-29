@@ -1,6 +1,6 @@
 <template>
   <div class="modal">
-    <div class="overlay"></div>
+    <div class="overlay" @click="closeModal"></div>
     <div class="modal-card">
       <slot />
     </div>
@@ -9,7 +9,12 @@
 
 <script>
   export default {
-    
+    props: {
+      closeModal: {
+        type: Function,
+        required: true
+      }
+    }
   }
 </script>
 
