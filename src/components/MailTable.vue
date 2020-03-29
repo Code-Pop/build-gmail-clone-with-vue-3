@@ -4,7 +4,7 @@
       <tr v-for="email in unarchivedEmails" 
           :key="email.id"
           :class="[email.read ? 'read': '', 'clickable']"
-          @click="email.read = true">
+          @click="readEmail(email)">
         <td>
           <input type="checkbox" />
         </td>
@@ -13,7 +13,7 @@
           <p><strong>{{email.subject}}</strong> - {{email.body}}</p>
         </td>
         <td class="date">{{format(new Date(email.sentAt), 'MMM do yyyy')}}</td>
-        <td><button @click="email.archived = true">Archive</button></td>
+        <td><button @click="archiveEmail(email)">Archive</button></td>
       </tr>
     </tbody>
   </table>
@@ -40,6 +40,16 @@
         return this.emails.sort((e1, e2) => {
           return e1.sentAt < e2.sentAt ? 1 : -1
         })
+      }
+    },
+    methods: {
+      readEmail(email){
+        email.read = true
+        axios.put(`http://localhost:3000/emails/${email.id}`, email)
+      },
+      archiveEmail(email){
+        email.archived = true;
+        axios.put(`http://localhost:3000/emails/${email.id}`, email)
       }
     }
   }
