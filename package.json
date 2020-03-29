@@ -12,12 +12,12 @@
     "core-js": "^3.6.4",
     "date-fns": "^2.11.0",
     "marked": "^0.8.1",
-    "vue": "^3.0.0-alpha.9"
+    "vue": "^3.0.0-alpha.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",
     "@vue/cli-service": "^4.2.0",
-    "@vue/compiler-sfc": "^3.0.0-alpha.9",
+    "@vue/compiler-sfc": "^3.0.0-alpha.10",
     "faker": "^4.1.0",
     "vue-cli-plugin-vue-next": "^0.0.4",
     "vue-template-compiler": "^2.6.11"
