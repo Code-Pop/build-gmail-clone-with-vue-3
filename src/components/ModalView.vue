@@ -12,7 +12,7 @@
 
   export default {
     setup({closeModal}){
-      useKeydown({key: 'Escape', fn: closeModal})
+      useKeydown([{key: 'Escape', fn: closeModal}])
     },
     props: {
       closeModal: {
