@@ -31,6 +31,7 @@
   import MailView from '@/components/MailView.vue';
   import ModalView from '@/components/ModalView.vue';
   import { ref } from 'vue';
+  import axios from 'axios';
 
   export default {
     setup({emails}){
@@ -42,6 +43,7 @@
 
         if(email) {
           openedEmail.value.read = true;
+          axios.put(`http://localhost:3000/emails/${openedEmail.value.id}`, openedEmail.value)
         }
       }
 

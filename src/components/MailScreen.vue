@@ -8,12 +8,12 @@
   import MailScreenArchived from '@/components/MailScreenArchived.vue';
   import MailScreenInbox from '@/components/MailScreenInbox.vue';
   import { ref } from 'vue';
+  import axios from 'axios';
 
   export default {
     async setup(){
-      let response = await fetch('http://localhost:3000/emails');
-      let emails = await response.json();
-      emails = ref(emails);
+      let {data} = await axios.get('http://localhost:3000/emails');
+      let emails = ref(data);
 
       return {emails};
     },
