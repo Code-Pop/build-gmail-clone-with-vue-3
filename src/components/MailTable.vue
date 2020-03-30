@@ -1,6 +1,7 @@
 <template>
   <table class="mail-table">
-    {{emailSelection.emails.size}}
+    <BulkActionBar />
+
     <tbody>
       <tr v-for="email in unarchivedEmails" 
           :key="email.id"
@@ -33,7 +34,8 @@
   import axios from 'axios';
   import MailView from '@/components/MailView.vue';
   import ModalView from '@/components/ModalView.vue';
-  import { reactive } from 'vue';
+  import BulkActionBar from '@/components/BulkActionBar.vue';
+  import { useEmailSelection } from '../composition/useEmailSelection';
 
   export default {
     async setup(){
@@ -41,17 +43,7 @@
       let emails = response.data;
       let openedEmail = null;
 
-
-      let emailSelection = reactive({
-        emails: new Set(),
-        toggle(id) {
-          if(this.emails.has(id)) {
-            this.emails.delete(id)
-          } else {
-            this.emails.add(id);
-          }
-        },
-      })
+      let { emailSelection } = useEmailSelection();
 
       return {
         format,
@@ -62,7 +54,8 @@
     },
     components: {
       MailView,
-      ModalView
+      ModalView,
+      BulkActionBar
     },
     computed: {
       unarchivedEmails(){
