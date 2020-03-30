@@ -11,6 +11,14 @@ export const useEmailSelection = function(){
         this.emails.add(id);
       }
     },
+    clear(){
+      this.emails.clear();
+    },
+    addMultiple(emails) {
+      emails.forEach(email => {
+        this.emails.add(email)
+      })
+    },
   })
 
   return { emailSelection }

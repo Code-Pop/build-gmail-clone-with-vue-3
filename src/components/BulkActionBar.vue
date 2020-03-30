@@ -2,7 +2,8 @@
   <div>
     <input type="checkbox" 
            :checked="allAreSelected"
-           :class="[partialSelection ? 'partial-check' : '']">
+           :class="[partialSelection ? 'partial-check' : '']"
+           @click="bulkSelect">
   </div>
 </template>
 
@@ -23,10 +24,19 @@
       let partialSelection = computed(() => {
         return numberSelected.value > 0 && !allAreSelected.value;
       })
+      
+      let bulkSelect = function(){
+        if(allAreSelected.value) {
+          emailSelection.clear();
+        } else {
+          emailSelection.addMultiple(emails)
+        }
+      }
 
       return { 
         partialSelection, 
-        allAreSelected
+        allAreSelected,
+        bulkSelect
       }
     },
     props: {
