@@ -1,10 +1,8 @@
 <template>
-  <div id="app">
-    <h1>VMail Inbox</h1>
-    
+  <div id="app">      
     <Suspense>
       <template #default>
-        <MailTable />
+        <MailScreen />
       </template>
       <template #fallback>
         Loading...
@@ -14,12 +12,12 @@
 </template>
 
 <script>
-import MailTable from '@/components/MailTable.vue';
+import MailScreen from '@/components/MailScreen.vue';
 
 export default {
   name: 'App',
   components: {
-    MailTable
+    MailScreen
   }
 };
 </script>
