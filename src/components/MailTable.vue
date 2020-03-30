@@ -1,7 +1,6 @@
 <template>
+  <BulkActionBar :emails="unarchivedEmails" />
   <table class="mail-table">
-    <BulkActionBar :emails="unarchivedEmails" />
-
     <tbody>
       <tr v-for="email in unarchivedEmails" 
           :key="email.id"
