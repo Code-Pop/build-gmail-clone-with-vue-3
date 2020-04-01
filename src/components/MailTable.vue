@@ -32,6 +32,7 @@
   import MailView from '@/components/MailView.vue';
   import ModalView from '@/components/ModalView.vue';
   import { useEmailSelection } from '../composition/useEmailSelection';
+  import axios from 'axios';
 
   export default {
     async setup(){
