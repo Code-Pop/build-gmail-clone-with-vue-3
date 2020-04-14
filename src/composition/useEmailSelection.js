@@ -15,7 +15,8 @@ export const useEmailSelection = function(){
   }
 
   const emailSelection = {
-    emails: emails,
+    emails,
+    clear,
     toggle(id) {
       if(emails.has(id)) {
         emails.delete(id)
@@ -28,7 +29,6 @@ export const useEmailSelection = function(){
         emails.add(email)
       })
     },
-    clear: clear,
     markRead(){ forSelected(e => e.read = true )},
     markUnread(){ forSelected(e => e.read = false )},
     archive(){ forSelected(e => e.archived = true); clear();},
