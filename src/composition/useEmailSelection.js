@@ -13,29 +13,33 @@ export const useEmailSelection = function(){
   const clear = () => {
     emails.clear();
   }
+  const toggle = (id) => {
+    if(emails.has(id)) {
+      emails.delete(id)
+    } else {
+      emails.add(id);
+    }
+  }
+  const addMultiple = (emails) => {
+    emails.forEach(email => {
+      emails.add(email)
+    })
+  }
+  const markRead = () => { forSelected(e => e.read = true )}
+  const markUnread = () => { forSelected(e => e.read = false )}
+  const archive = () => { forSelected(e => e.archived = true); clear();}
+  const moveToInbox = () => { forSelected(e => e.archived = false); clear();}
 
-  const emailSelection = {
+  return {
     emails,
     clear,
-    toggle(id) {
-      if(emails.has(id)) {
-        emails.delete(id)
-      } else {
-        emails.add(id);
-      }
-    },
-    addMultiple(emails) {
-      emails.forEach(email => {
-        emails.add(email)
-      })
-    },
-    markRead(){ forSelected(e => e.read = true )},
-    markUnread(){ forSelected(e => e.read = false )},
-    archive(){ forSelected(e => e.archived = true); clear();},
-    moveToInbox(){ forSelected(e => e.archived = false); clear();}
+    toggle,
+    addMultiple,
+    markRead,
+    markUnread,
+    archive,
+    moveToInbox
   }
-
-  return emailSelection
 }
 
 export default useEmailSelection;
