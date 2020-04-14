@@ -27,12 +27,11 @@
       let response = await axios.get('http://localhost:3000/emails');
       let emails = response.data;
       let selectedScreen = 'archive';
-      let {emailSelection} = useEmailSelection();
 
       return { 
         emails,
         selectedScreen,
-        emailSelection
+        emailSelection: useEmailSelection()
       }
     },
     components: {

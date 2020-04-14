@@ -35,13 +35,10 @@
 
   export default {
     async setup(){
-      let openedEmail = null;
-      let { emailSelection } = useEmailSelection();
-
       return {
         format,
-        openedEmail,
-        emailSelection
+        openedEmail: null,
+        emailSelection: useEmailSelection()
       }
     },
     components: {

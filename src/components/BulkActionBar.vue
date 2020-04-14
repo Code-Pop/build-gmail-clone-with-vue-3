@@ -30,7 +30,7 @@
 
   export default {
     setup({emails}){
-      let { emailSelection } = useEmailSelection();
+      let emailSelection = useEmailSelection();
 
       let numberSelected = computed(() => {
         return emailSelection.emails.size;

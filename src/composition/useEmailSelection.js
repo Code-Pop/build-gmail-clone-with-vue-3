@@ -35,7 +35,7 @@ export const useEmailSelection = function(){
     moveToInbox(){ forSelected(e => e.archived = false); clear();}
   }
 
-  return { emailSelection }
+  return emailSelection
 }
 
 export default useEmailSelection;
