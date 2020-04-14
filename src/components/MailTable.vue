@@ -21,8 +21,7 @@
   </table>
 
   <ModalView v-if="openedEmail" :closeModal="() => { openedEmail = null; }">
-    <MailView v-if="openedEmail" 
-              :email="openedEmail"
+    <MailView :email="openedEmail"
               :changeEmail="(args) => changeEmail(openedEmail, args)" />
   </ModalView>
 </template>
