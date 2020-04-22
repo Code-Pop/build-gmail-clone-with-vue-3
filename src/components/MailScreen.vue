@@ -26,7 +26,7 @@
     async setup(){
       let response = await axios.get('http://localhost:3000/emails');
       let emails = response.data;
-      let selectedScreen = 'archive';
+      let selectedScreen = 'inbox';
 
       return { 
         emails,
