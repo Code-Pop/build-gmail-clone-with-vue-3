@@ -1,9 +1,11 @@
 import { reactive } from 'vue';
 import axios from 'axios';
 
-let emailSet = new Set() 
+let emailSet = new Set()
+
 export const useEmailSelection = function(){
   const emails = reactive(emailSet)
+
   const forSelected = (fn) => {
     emails.forEach(email => {
       fn(email)
