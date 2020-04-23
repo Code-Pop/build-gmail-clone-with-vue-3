@@ -16,9 +16,15 @@
               :disabled="Array.from(emailSelection.emails).every(e => !e.read)">
         Mark Unread
       </button>
-      <button @click="emailSelection.archive()" 
+      <button v-if="selectedScreen == 'inbox'"
+              @click="emailSelection.archive()" 
               :disabled="numberSelected == 0">
         Archive
+      </button>
+      <button v-else
+              @click="emailSelection.moveToInbox()" 
+              :disabled="numberSelected == 0">
+        Move to Inbox
       </button>
     </span>
   </div>
@@ -61,6 +67,10 @@
     props: {
       emails: {
         type: Array,
+        required: true
+      }, 
+      selectedScreen: {
+        type: String,
         required: true
       }
     }

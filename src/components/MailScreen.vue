@@ -10,7 +10,8 @@
   
   <h1>VMail Inbox</h1>
 
-  <BulkActionBar :emails="filteredEmails" />
+  <BulkActionBar :emails="filteredEmails"
+                 :selectedScreen="selectedScreen" />
 
   <MailTable :emails="filteredEmails" />
 </template>
