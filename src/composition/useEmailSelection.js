@@ -22,8 +22,8 @@ export const useEmailSelection = function(){
       emails.add(id);
     }
   }
-  const addMultiple = (emails) => {
-    emails.forEach(email => {
+  const addMultiple = (newEmails) => {
+    newEmails.forEach(email => {
       emails.add(email)
     })
   }
