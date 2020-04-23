@@ -8,7 +8,7 @@
     Archived View
   </button>
   
-  <h1>VMail Inbox</h1>
+  <h1>VMail {{capitalize(selectedScreen)}}</h1>
 
   <BulkActionBar :emails="filteredEmails"
                  :selectedScreen="selectedScreen" />
@@ -43,6 +43,11 @@
       selectScreen(newScreen) {
         this.selectedScreen = newScreen;
         this.emailSelection.clear();
+      },
+      capitalize(word) {
+        if(!word || !word.length){ return; }
+
+        return word[0].toUpperCase() + word.slice(1)
       }
     },
     computed: {
