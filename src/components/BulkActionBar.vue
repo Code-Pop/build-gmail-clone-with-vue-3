@@ -35,14 +35,14 @@
   import { computed } from 'vue';
 
   export default {
-    setup({emails}){
+    setup(props){
       let emailSelection = useEmailSelection();
 
       let numberSelected = computed(() => {
         return emailSelection.emails.size;
       }) 
       let allAreSelected = computed(() => {
-        return emails.length == numberSelected.value;
+        return props.emails.length == numberSelected.value;
       })
       let partialSelection = computed(() => {
         return numberSelected.value > 0 && !allAreSelected.value;
@@ -52,7 +52,7 @@
         if(allAreSelected.value) {
           emailSelection.clear();
         } else {
-          emailSelection.addMultiple(emails)
+          emailSelection.addMultiple(props.emails)
         }
       }
 
