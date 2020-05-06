@@ -46,6 +46,13 @@ button:disabled {
   cursor: auto;
 }
 
+button.selected {
+  cursor: auto;
+  color: black;
+  border-color: black;
+  border-width: 2px;
+}
+
 .clickable {
   cursor: pointer;
 }

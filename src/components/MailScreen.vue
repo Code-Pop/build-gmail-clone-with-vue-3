@@ -1,10 +1,10 @@
 <template>
   <button @click="selectScreen('inbox');"
-          :disabled="selectedScreen == 'inbox'">
+          :class="[selectedScreen == 'inbox' ? 'selected' : '']">
     Inbox View
   </button>
   <button @click="selectScreen('archive')" 
-          :disabled="selectedScreen == 'archive'">
+          :class="[selectedScreen == 'archive' ? 'selected' : '']">
     Archived View
   </button>
   
