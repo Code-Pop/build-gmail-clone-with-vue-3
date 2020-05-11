@@ -42,7 +42,7 @@
         return emailSelection.emails.size;
       }) 
       let allAreSelected = computed(() => {
-        return props.emails.length == numberSelected.value;
+        return props.emails.length == numberSelected.value && numberSelected.value !== 0;
       })
       let partialSelection = computed(() => {
         return numberSelected.value > 0 && !allAreSelected.value;
