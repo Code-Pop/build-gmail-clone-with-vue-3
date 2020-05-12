@@ -16,7 +16,7 @@ export default {
           "body": "The opening keynote of VueConf US this year was Evan You (the creator of Vue), giving his State of the Vuenion address. He walked us through the journey of getting Vue 3 from a prototype to a reality the past year. He also dove into Vue's overall growth in the community.",
           "sentAt": "2020-03-27T18:25:43.511Z",
           "archived": false,
-          "read": false
+          "read": true
         },
         {
           "id": 2,
@@ -34,7 +34,7 @@ export default {
           "body": "First of all, lets congratulate Kia King Ishii on joining the Vue.js core team! 🎉 He has been doing an incredible job building vuex-orm and will now focus on working on the next versions of Vuex.\n\nSpeaking of which – Vuex v4.0.0-alpha.1 has just been released! This is the version of Vuex that will work with Vue 3.0 but keep the familiar API you know from the current version.",
           "sentAt": "2020-03-18T18:25:43.511Z",
           "archived": false,
-          "read": true
+          "read": false
         },
         {
           "id": 4,
@@ -43,7 +43,7 @@ export default {
           "body": "Newsletter Issue #161",
           "sentAt": "2020-03-24T18:25:43.511Z",
           "archived": true,
-          "read": true
+          "read": false
         }
       ]
     }
