@@ -1,43 +1,23 @@
 <template>
-  <div id="app">
-    <button @click="selectScreen('MailScreenInbox');"
-            :disabled="screenName == 'MailScreenInbox'">
-      Inbox View
-    </button>
-    <button @click="selectScreen('MailScreenArchived')" 
-            :disabled="screenName == 'MailScreenArchived'">
-      Archived View
-    </button>
-
-    <suspense>
+  <div id="app">      
+    <Suspense>
       <template #default>
-        <MailScreen :screenName="screenName" />
+        <MailScreen />
       </template>
       <template #fallback>
-        <p>Loading...</p>
+        Loading...
       </template>
-    </suspense>
+    </Suspense>
   </div>
 </template>
 
 <script>
 import MailScreen from '@/components/MailScreen.vue';
-import useEmailSelection from './composition/useEmailSelection';
-import { ref } from 'vue'
 
 export default {
   name: 'App',
   components: {
     MailScreen
-  },
-  setup(){  
-    let screenName = ref('MailScreenInbox');
-    let {emailSelection} = useEmailSelection();
-    let selectScreen = function(newScreen){
-      screenName.value = newScreen;
-      emailSelection.clear();
-    }
-    return {screenName, selectScreen}
   }
 };
 </script>
@@ -64,6 +44,13 @@ button {
 
 button:disabled {
   cursor: auto;
+}
+
+button.selected {
+  cursor: auto;
+  color: black;
+  border-color: black;
+  border-width: 2px;
 }
 
 .clickable {

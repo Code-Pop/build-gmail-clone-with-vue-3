@@ -11,10 +11,10 @@
     },
     {
       "id": 2,
-      "from": "jeffrey@vuescreencasts.com",
-      "subject": "Five new VueJS videos this week + new podcast episode",
-      "body": "I hope you've been enjoying the Vue 3 course I've been releasing with Vue Mastery!\n\nThis week on VueScreencasts.com we have a follow-up video that digs further into what we covered in this week's Vue Mastery lesson, I answer a question that five of you asked about last week's most popular video, and we start a new series with a very awesome library author.\n\nFinally, for your ears only: a new episode of Exploring the Vueniverse.",
-      "sentAt": "2020-05-03T18:25:43.511Z",
+      "from": "jeffrey@vuetraining.net",
+      "subject": "Learn by doing - Vue 3 Zero to Intermediate in 8 weeks",
+      "body": "Building projects is one of the most effective ways to learn - and _the_ most effective way _remember_ what you've learned - but it can be frustrating.\n\nThis 8-week course takes the pain out of 'learning by doing'.\n\nEach week we give you\n\n* a project that will grow your skills without overwhelming you\n* links to hand-picked resources, such as Vue Mastery videos, that share the knowledge you'll need for the project (no more useless rabbit holes)\n* answers to any and all questions you have while working\n* feedback on your completed code (so you're only learning good habits)\n\nOur instructors are standing by to answer your questions.\n\nReady to learn?",
+      "sentAt": "2020-05-20T18:25:43.511Z",
       "archived": false,
       "read": false
     },

@@ -1,8 +1,8 @@
 <template>
   <div class="modal">
-    <div class="overlay" @click="closeModal()"></div>
+    <div class="overlay" @click="closeModal"></div>
     <div class="modal-card">
-      <slot :closeModal="closeModal" />
+      <slot />
     </div>
   </div>
 </template>
@@ -11,7 +11,7 @@
   import { useKeydown } from '../composition/useKeydown';
 
   export default {
-    setup({closeModal}, context){
+    setup({closeModal}){
       useKeydown([{key: 'Escape', fn: closeModal}])
     },
     props: {

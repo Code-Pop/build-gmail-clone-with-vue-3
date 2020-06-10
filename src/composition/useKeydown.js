@@ -1,5 +1,4 @@
-import { onMounted, onBeforeUnmount } from 'vue';
-import { fr } from 'date-fns/locale';
+import { onBeforeUnmount } from 'vue';
 
 export const useKeydown = function(keyCombos) {
   let onkey = function(event) {
@@ -9,9 +8,8 @@ export const useKeydown = function(keyCombos) {
     }
   }
 
-  onMounted(()=> {
-    window.addEventListener('keydown', onkey);
-  })
+  window.addEventListener('keydown', onkey);
+
   onBeforeUnmount(()=> {
     window.removeEventListener('keydown', onkey);
   })

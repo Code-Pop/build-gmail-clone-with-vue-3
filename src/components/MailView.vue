@@ -1,10 +1,10 @@
 <template>
-  <div class="email-display" v-if="email">
+  <div class="email-display">
     <div class="toolbar">
       <button @click="toggleArchive">{{email.archived ? 'Move to Inbox (e)' : 'Archive (e)'}}</button>
+      <button @click="toggleRead">{{email.read ? 'Mark Unread (r)' : 'Mark Read (r)'}}</button>
       <button @click="goNewer">Newer (k)</button>
       <button @click="goOlder">Older (j)</button>
-      <button @click="toggleRead()">Mark {{email.read ? 'Unread' : 'Read'}}</button>
     </div>
 
     <h2 class="mb-0">Subject: <strong>{{email.subject}}</strong></h2>
@@ -14,40 +14,46 @@
 </template>
 
 <script>
+  import { format } from 'date-fns';
   import marked from 'marked';
   import { useKeydown } from '../composition/useKeydown';
-  import { format } from 'date-fns';
 
   export default {
-    setup({}, {emit}) {
-      let goNewer = () => emit('changeEmail', {amount: -1})
-      let goOlder = () => emit('changeEmail', {amount: 1})
-      let goNewerAndArchive = () => emit('changeEmail', {amount: -1, toggleArchive: true})
-      let goOlderAndArchive = () => emit('changeEmail', {amount: 1, toggleArchive: true})
-      let toggleArchive = () => emit('changeEmail', {toggleArchive: true, closeModal: true})
-      let toggleRead = () => { emit('changeEmail', {toggleRead: true}) }
+    setup({changeEmail}){
+      let toggleArchive = () => changeEmail({toggleArchive: true, save: true, closeModal: true})
+      let toggleRead = () => changeEmail({toggleRead: true, save: true})
+      let goNewer = () => changeEmail({indexChange: -1})
+      let goOlder = () => changeEmail({indexChange: 1})
+      let goNewerAndArchive = () => changeEmail({indexChange: -1, toggleArchive: true})
+      let goOlderAndArchive = () => changeEmail({indexChange: 1, toggleArchive: true})
 
       useKeydown([
-        {key: 'k', fn: goNewer}, 
+        {key: 'e', fn: toggleArchive},
+        {key: 'r', fn: toggleRead},
+        {key: 'k', fn: goNewer},
         {key: 'j', fn: goOlder},
         {key: '[', fn: goNewerAndArchive},
-        {key: ']', fn: goOlderAndArchive},
-        {key: 'e', fn: toggleArchive}
+        {key: ']', fn: goOlderAndArchive}
       ])
 
       return {
-        toggleArchive,
-        goNewer,
-        goOlder,
-        toggleRead,
         format,
         marked,
+        goOlder,
+        goNewer,
+        toggleRead,
+        toggleArchive
       }
     },
     props: {
       email: {
-        type: Object
+        type: Object,
+        required: true
       },
+      changeEmail: {
+        type: Function,
+        required: true
+      }
     }
   }
 </script>

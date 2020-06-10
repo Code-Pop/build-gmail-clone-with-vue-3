@@ -3,84 +3,82 @@
     <tbody>
       <tr v-for="email in emails" 
           :key="email.id"
-          :class="[email.read ? 'read' : '']"
-          @click="openEmail(email, true)"
-          class="clickable">
+          :class="[email.read ? 'read': '', 'clickable']"
+          @click="openEmail(email)">
         <td>
-          <input type="checkbox" 
+          <input type="checkbox"
                  :checked="emailSelection.emails.has(email)"
-                 @click="emailSelection.toggle(email)">
+                 @click="emailSelection.toggle(email)" />
         </td>
         <td>{{email.from}}</td>
         <td>
           <p><strong>{{email.subject}}</strong> - {{email.body}}</p>
         </td>
         <td class="date">{{format(new Date(email.sentAt), 'MMM do yyyy')}}</td>
+        <td><button @click="archiveEmail(email)">Archive</button></td>
       </tr>
     </tbody>
-
-    <ModalView v-if="!!openedEmail" :closeModal="() => {openedEmail = null;}">
-      <MailView :email="openedEmail" 
-                @changeEmail="(args) => changeEmail(emails, args)"
-                @openEmail="openEmail" />
-    </ModalView>
   </table>
+
+  <ModalView v-if="openedEmail" :closeModal="() => { openedEmail = null; }">
+    <MailView :email="openedEmail"
+              :changeEmail="(args) => changeEmail(openedEmail, args)" />
+  </ModalView>
 </template>
 
 <script>
-  import { format } from 'date-fns'
-  import useEmailSelection from '../composition/useEmailSelection';
+  import { format } from 'date-fns';
   import MailView from '@/components/MailView.vue';
   import ModalView from '@/components/ModalView.vue';
-  import { ref } from 'vue';
+  import { useEmailSelection } from '../composition/useEmailSelection';
   import axios from 'axios';
 
   export default {
-    setup({emails}){
-      let {emailSelection} = useEmailSelection();
-      let openedEmail = ref();
-
-      let openEmail = function(email) {
-        openedEmail.value = email;
-
-        if(email) {
-          openedEmail.value.read = true;
-          axios.put(`http://localhost:3000/emails/${openedEmail.value.id}`, openedEmail.value)
-        }
-      }
-
-      function changeEmail(emails, {amount, toggleArchive, closeModal, toggleRead}){
-        let index = emails.findIndex(e => e == openedEmail.value);
-
-        if(toggleArchive) { emails[index].archived = !emails[index].archived }
-        if(toggleRead) { emails[index].read = !emails[index].read }
-
-        if(toggleArchive || toggleRead) {
-          axios.put(`http://localhost:3000/emails/${emails[index].id}`, emails[index])
-        }
-
-        if(closeModal) { openedEmail.value = null; return null; }
-
-        if(amount) {
-          openEmail(emails[index + amount])
-        }
-      }
-
-      return {format, emailSelection, openedEmail, openEmail, changeEmail}
-    },
-    props: {
-      emails: {
-        type: Array,
-        default: []
+    async setup(){
+      return {
+        format,
+        openedEmail: null,
+        emailSelection: useEmailSelection()
       }
     },
     components: {
       MailView,
-      ModalView
+      ModalView,
+    },
+    methods: {
+      openEmail(email){
+        this.openedEmail = email;
+
+        if(email) {
+          email.read = true
+          axios.put(`http://localhost:3000/emails/${email.id}`, email)
+        }
+      },
+      archiveEmail(email){
+        email.archived = true;
+        axios.put(`http://localhost:3000/emails/${email.id}`, email)
+      },
+      changeEmail(email, {indexChange, toggleArchive, toggleRead, save, closeModal}) {
+        if(toggleArchive) { email.archived = !email.archived }
+        if(toggleRead) { email.read = !email.read }
+        if(save) { axios.put(`http://localhost:3000/emails/${email.id}`, email) }
+        if(closeModal) { this.openedEmail = null; return null; }
+
+        if(indexChange) {
+          let index = this.emails.findIndex(e => e == email);
+          this.openEmail(this.emails[index + indexChange])
+        }
+      }
+    },
+    props: {
+      emails: {
+        type: Array,
+        required: true
+      }
     }
   }
 </script>
 
 <style scoped>
-  
+
 </style>

@@ -1,38 +1,46 @@
-import { ref, reactive } from 'vue';
+import { reactive } from 'vue';
+import axios from 'axios';
 
-let emails = new Set();
+let emailSet = new Set()
+
 export const useEmailSelection = function(){
+  const emails = reactive(emailSet)
 
-  let emailSelection = reactive({
-    emails: emails,
-    toggle(id) {
-      if(this.emails.has(id)) {
-        this.emails.delete(id)
-      } else {
-        this.emails.add(id);
-      }
-    },
-    clear(){
-      this.emails.clear();
-    },
-    addMultiple(emails) {
-      emails.forEach(email => {
-        this.emails.add(email)
-      })
-    },
-    forSelected(fn){
-      this.emails.forEach(email => {
-        fn(email)
-      })
-    },
-    markRead(){ this.forSelected(e => e.read = true )},
-    markUnread(){ this.forSelected(e => e.read = false )},
-    archive(){ this.forSelected(e => e.archived = true); this.clear();},
-    moveToInbox(){ this.forSelected(e => e.archived = false); this.clear();}
-  })
+  const forSelected = (fn) => {
+    emails.forEach(email => {
+      fn(email)
+      axios.put(`http://localhost:3000/emails/${email.id}`, email)
+    })
+  }
+  const clear = () => {
+    emails.clear();
+  }
+  const toggle = (id) => {
+    if(emails.has(id)) {
+      emails.delete(id)
+    } else {
+      emails.add(id);
+    }
+  }
+  const addMultiple = (newEmails) => {
+    newEmails.forEach(email => {
+      emails.add(email)
+    })
+  }
+  const markRead = () => { forSelected(e => e.read = true )}
+  const markUnread = () => { forSelected(e => e.read = false )}
+  const archive = () => { forSelected(e => e.archived = true); clear();}
+  const moveToInbox = () => { forSelected(e => e.archived = false); clear();}
 
   return {
-    emailSelection,
+    emails,
+    clear,
+    toggle,
+    addMultiple,
+    markRead,
+    markUnread,
+    archive,
+    moveToInbox
   }
 }
 
