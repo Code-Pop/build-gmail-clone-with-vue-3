@@ -55,6 +55,7 @@
       openEmail(email) {
         email.read = true
         this.updateEmail(email)
+
         this.openedEmail = email
       },
       archiveEmail(email) {
