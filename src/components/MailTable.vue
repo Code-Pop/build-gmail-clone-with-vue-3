@@ -1,5 +1,4 @@
 <template>
-  <h1>{{emailSelection.emails.size}} emails selected</h1>
   <table class="mail-table">
     <tbody>
       <tr v-for="email in unarchivedEmails"
