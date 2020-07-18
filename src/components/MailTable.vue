@@ -18,7 +18,7 @@
     </tbody>
   </table>
   <ModalView v-if="openedEmail" @closeModal="openedEmail = null">
-    <MailView :email="openedEmail" />
+    <MailView :email="openedEmail" @changeEmail="changeEmail" />
   </ModalView>
 </template>
 
@@ -53,14 +53,30 @@
     },
     methods: {
       openEmail(email) {
-        email.read = true
-        this.updateEmail(email)
-
         this.openedEmail = email
+
+        if(email) {
+          email.read = true
+          this.updateEmail(email)
+        }
       },
       archiveEmail(email) {
         email.archived = true
         this.updateEmail(email)
+      },
+      changeEmail({toggleRead, toggleArchive, save, closeModal, changeIndex}) {
+        let email = this.openedEmail
+        if(toggleRead) { email.read = !email.read }
+        if(toggleArchive) { email.archived = !email.archived }
+        if(save) { this.updateEmail(email) }
+        if(closeModal) { this.openedEmail = null }
+
+        if(changeIndex) {
+          let emails = this.unarchivedEmails
+          let currentIndex = emails.indexOf(this.openedEmail)
+          let newEmail = emails[currentIndex + changeIndex]
+          this.openEmail(newEmail)
+        }
       },
       updateEmail(email) {
         axios.put(`http://localhost:3000/emails/${email.id}`, email)
