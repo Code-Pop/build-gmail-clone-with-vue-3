@@ -19,19 +19,24 @@ export const useEmailSelection = function(){
       emails.add(email)
     })
   }
-  let markRead = () => {
+  let forSelected = (fn) => {
     emails.forEach((email) => {
-      email.read = true;
+      fn(email);
       axios.put(`http://localhost:3000/emails/${email.id}`, email)
     })
   }
+  let markRead = () => forSelected(e => e.read = true)
+  let markUnread = () => forSelected(e => e.read = false)
+  let archive = () => { forSelected(e => e.archived = true); clear() }
 
   return {
     emails,
     toggle,
     clear,
     addMultiple,
-    markRead
+    markRead,
+    markUnread,
+    archive
   }
 }
 
