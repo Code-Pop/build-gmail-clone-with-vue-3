@@ -1,4 +1,5 @@
 import { reactive } from 'vue';
+import axios from 'axios';
 
 let emails = reactive(new Set())
 
@@ -18,12 +19,19 @@ export const useEmailSelection = function(){
       emails.add(email)
     })
   }
+  let markRead = () => {
+    emails.forEach((email) => {
+      email.read = true;
+      axios.put(`http://localhost:3000/emails/${email.id}`, email)
+    })
+  }
 
   return {
     emails,
     toggle,
     clear,
-    addMultiple
+    addMultiple,
+    markRead
   }
 }
 
