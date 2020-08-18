@@ -1,4 +1,5 @@
 <template>
+  <BulkActionBar :emails="unarchivedEmails" />
   <table class="mail-table">
     <tbody>
       <tr v-for="email in unarchivedEmails"
@@ -30,6 +31,7 @@
   import axios from 'axios';
   import MailView from '@/components/MailView.vue';
   import ModalView from '@/components/ModalView.vue';
+  import BulkActionBar from '@/components/BulkActionBar.vue';
   import { reactive } from 'vue';
   import useEmailSelection from '@/composables/use-email-selection'
 
@@ -46,7 +48,8 @@
     },
     components: {
       MailView,
-      ModalView
+      ModalView,
+      BulkActionBar
     },
     computed: {
       sortedEmails() {
