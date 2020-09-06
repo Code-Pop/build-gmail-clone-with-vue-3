@@ -30,10 +30,10 @@
     setup(props){
       let emailSelection = useEmailSelection();
       let numberSelected = computed(() => emailSelection.emails.size)
-      let numberEmails = props.emails.length
-      let allEmailsSelected = computed(() => numberSelected.value === numberEmails)
+      let numberEmails = computed(() => props.emails.length)
+      let allEmailsSelected = computed(() => numberSelected.value === numberEmails.value)
       let someEmailsSelected = computed(() => {
-        return numberSelected.value > 0 && numberSelected.value < numberEmails
+        return numberSelected.value > 0 && numberSelected.value < numberEmails.value
       })
       let bulkSelect = function(){
         if(allEmailsSelected.value) {
