@@ -13,18 +13,12 @@
   
 <script>
 import MailTable from '@/components/MailTable.vue';
-import useEmailSelection from '@/composables/use-email-selection';
 
 export default {
   name: 'App',
   components: {
     MailTable
   },
-  setup(){
-    return {
-      emailSelection: useEmailSelection()
-    }
-  }
 };
 </script>
 
