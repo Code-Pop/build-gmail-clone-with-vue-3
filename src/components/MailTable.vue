@@ -32,7 +32,7 @@
   import MailView from '@/components/MailView.vue';
   import ModalView from '@/components/ModalView.vue';
   import BulkActionBar from '@/components/BulkActionBar.vue';
-  import { reactive, ref } from 'vue';
+  import { ref } from 'vue';
   import useEmailSelection from '@/composables/use-email-selection'
 
   export default {
