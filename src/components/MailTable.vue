@@ -24,14 +24,15 @@
   import { format } from 'date-fns';
   import axios from 'axios';
   import MailView from '@/components/MailView.vue';
+  import { ref } from 'vue';
 
   export default {
     async setup(){
       let {data: emails} = await axios.get('http://localhost:3000/emails')
       return {
         format,
-        emails,
-        openedEmail: null
+        emails: ref(emails),
+        openedEmail: ref(null)
       }
     },
     components: {
