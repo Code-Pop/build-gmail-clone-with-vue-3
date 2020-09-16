@@ -31,7 +31,8 @@
   import axios from 'axios';
   import MailView from '@/components/MailView.vue';
   import ModalView from '@/components/ModalView.vue';
-  import { reactive } from 'vue';
+
+  import { ref, reactive } from 'vue';
 
   export default {
     async setup(){
@@ -52,8 +53,8 @@
       return {
         emailSelection,
         format,
-        emails,
-        openedEmail: null
+        emails: ref(emails),
+        openedEmail: ref(null)
       }
     },
     components: {
