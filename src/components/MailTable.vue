@@ -30,7 +30,7 @@
   import axios from 'axios';
   import MailView from '@/components/MailView.vue';
   import ModalView from '@/components/ModalView.vue';
-  import { reactive } from 'vue';
+  import { ref } from 'vue';
   import useEmailSelection from '@/composables/use-email-selection'
 
   export default {
@@ -40,8 +40,8 @@
       return {
         emailSelection: useEmailSelection(),
         format,
-        emails,
-        openedEmail: null
+        emails: ref(emails),
+        openedEmail: ref(null)
       }
     },
     components: {
