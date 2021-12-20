@@ -1,82 +1,77 @@
 <template>
   <div class="bulk-action-bar">
     <span class="checkbox">
-      <input type="checkbox" 
-             :checked="allAreSelected"
-             :class="[partialSelection ? 'partial-check' : '']"
-             @click="bulkSelect">
+      <input
+        type="checkbox"
+        :checked="allEmailSelected"
+        :class="[someEmailSelected ? 'partial-check' : '']"
+        @click="bulkSelect"
+      />
     </span>
-    
     <span class="buttons">
-      <button @click="emailSelection.markRead()"
-              :disabled="Array.from(emailSelection.emails).every(e => e.read)">
+      <button
+        @click="emailSelection.markRead()"
+        :disabled="[...emailSelection.emails].every((e) => e.read)"
+      >
         Mark Read
       </button>
-      <button @click="emailSelection.markUnread()" 
-              :disabled="Array.from(emailSelection.emails).every(e => !e.read)">
+      <button
+        @click="emailSelection.markUnread()"
+        :disabled="[...emailSelection.emails].every((e) => !e.read)"
+      >
         Mark Unread
       </button>
-      <button v-if="selectedScreen == 'inbox'"
-              @click="emailSelection.archive()" 
-              :disabled="numberSelected == 0">
-        Archive
-      </button>
-      <button v-else
-              @click="emailSelection.moveToInbox()" 
-              :disabled="numberSelected == 0">
-        Move to Inbox
+      <button
+        @click="emailSelection.archive()"
+        :disabled="numberSelected === 0"
+      >
+        Mark Archive
       </button>
     </span>
   </div>
 </template>
 
 <script>
-  import { useEmailSelection } from '../composition/useEmailSelection';
-  import { computed } from 'vue';
+import useEmailSelection from "@/composables/use-email-selection.js";
+import { computed } from "@vue/reactivity";
+export default {
+  setup(props) {
+    const emailSelection = useEmailSelection();
+    let numberSelected = computed(() => emailSelection.emails.size);
+    let numberEmails = computed(() => props.emails.length);
 
-  export default {
-    setup(props){
-      let emailSelection = useEmailSelection();
+    let allEmailSelected = computed(
+      () => numberSelected.value === numberEmails.value
+    );
+    const someEmailSelected = computed(
+      () =>
+        numberSelected.value > 0 && numberSelected.value < numberEmails.value
+    );
 
-      let numberSelected = computed(() => {
-        return emailSelection.emails.size;
-      }) 
-      let allAreSelected = computed(() => {
-        return props.emails.length == numberSelected.value && numberSelected.value !== 0;
-      })
-      let partialSelection = computed(() => {
-        return numberSelected.value > 0 && !allAreSelected.value;
-      })
-      
-      let bulkSelect = function(){
-        if(allAreSelected.value) {
-          emailSelection.clear();
-        } else {
-          emailSelection.addMultiple(props.emails)
-        }
+    const bulkSelect = () => {
+      if (allEmailSelected.value) {
+        emailSelection.clear();
+      } else {
+        emailSelection.addMultiple(props.emails);
       }
+    };
 
-      return { 
-        partialSelection, 
-        allAreSelected,
-        bulkSelect,
-        emailSelection,
-        numberSelected
-      }
+    return {
+      allEmailSelected,
+      someEmailSelected,
+      bulkSelect,
+      emailSelection,
+      numberSelected,
+    };
+  },
+  props: {
+    emails: {
+      type: Array,
+      required: true,
     },
-    props: {
-      emails: {
-        type: Array,
-        required: true
-      }, 
-      selectedScreen: {
-        type: String,
-        required: true
-      }
-    }
-  }
+  },
+};
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 </style>
