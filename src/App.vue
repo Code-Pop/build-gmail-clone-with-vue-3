@@ -1,6 +1,5 @@
 <template>
   <h1>VMail Inbox</h1>
-
   <Suspense>
     <MailTable />
     <template #fallback> Loading... </template>
@@ -9,10 +8,16 @@
   
 <script>
 import MailTable from "@/components/MailTable.vue";
+import useEmailSelection from "@/composables/use-email-selection.js";
 
 export default {
   name: "App",
   components: { MailTable },
+  setup() {
+    return {
+      emailSelection: useEmailSelection(),
+    };
+  },
 };
 </script>
 
