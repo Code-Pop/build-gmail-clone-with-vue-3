@@ -8,18 +8,24 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "@vue/cli-service": "^5.0.8",
+    "axios": "^1.7.9",
     "core-js": "^3.6.4",
     "date-fns": "^2.11.0",
-    "marked": "^0.8.1",
-    "vue": "^3.0.0-rc.5"
+    "marked": "^15.0.6",
+    "vue": "^3.5.13",
+    "vue-loader": "^16.8.3",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.15.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.3.0",
-    "@vue/cli-service": "^4.3.0",
-    "@vue/compiler-sfc": "^3.0.0-rc.5",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/compiler-sfc": "^3.5.13",
     "faker": "^4.1.0",
-    "vue-cli-plugin-vue-next": "^0.1.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-cli-plugin-vue-next": "^0.1.2"
+  },
+  "overrides": {
+    "postcss": "^8.4.31"
   }
 }
