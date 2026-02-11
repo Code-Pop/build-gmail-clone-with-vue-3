@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@vue/cli-service": "^5.0.8",
-    "axios": "^1.7.9",
+    "axios": "^1.13.5",
     "core-js": "^3.6.4",
     "date-fns": "^2.11.0",
     "marked": "^15.0.6",
