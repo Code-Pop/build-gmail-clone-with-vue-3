@@ -1,3 +1,5 @@
+**This repository is for learning purposes only, it's not for production use.**
+
 # vue-3-demo
 
 ## Project setup
@@ -23,4 +25,3 @@ yarn lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-**This repository is for learning purposes only, it's not for production use.**
